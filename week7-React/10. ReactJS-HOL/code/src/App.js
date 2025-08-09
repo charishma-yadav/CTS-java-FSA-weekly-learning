@@ -1,59 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-const officeSpaces = [
-  {
-    name: 'Downtown Office',
-    rent: 55000,
-    address: '123 Main St, City Center',
-    image: 'https://via.placeholder.com/150'
-  },
-  {
-    name: 'Tech Park Office',
-    rent: 75000,
-    address: '456 Tech Park, Silicon Valley',
-    image: 'https://via.placeholder.com/150'
-  },
-  {
-    name: 'Suburban Office',
-    rent: 40000,
-    address: '789 Suburb Lane, Outskirts',
-    image: 'https://via.placeholder.com/150'
-  }
-];
-
-function getRentClass(rent) {
-  return rent < 60000 ? 'textRed' : 'textGreen';
-}
 
 function App() {
+  const offices = [
+    { name: 'Tech Park', rent: 55000, address: 'MG Road, Bangalore', image: 'https://via.placeholder.com/300x200?text=Tech+Park' },
+    { name: 'Business Hub', rent: 75000, address: 'Anna Salai, Chennai', image: 'https://via.placeholder.com/300x200?text=Business+Hub' },
+    { name: 'Startup Space', rent: 45000, address: 'Hitech City, Hyderabad', image: 'https://via.placeholder.com/300x200?text=Startup+Space' }
+  ];
+
+  const headingStyle = {
+    textAlign: 'center',
+    color: '#333',
+    margin: '20px 0'
+  };
+
+  const containerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '20px',
+    flexWrap: 'wrap'
+  };
+
+  const cardStyle = {
+    border: '1px solid #ccc',
+    borderRadius: '10px',
+    padding: '15px',
+    width: '300px',
+    textAlign: 'center',
+    boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <div>
-        <h1>Office Space Rental App</h1>
-        {officeSpaces.map((office, idx) => (
-          <div key={idx} style={{border: '1px solid #ccc', margin: '10px', padding: '10px'}}>
-            <img src={office.image} width="150" height="150" alt="Office Space" />
-            <h2>Name: {office.name}</h2>
-            <h3>
-              Rent: <span className={getRentClass(office.rent)}>Rs. {office.rent}</span>
-            </h3>
-            <h3>Address: {office.address}</h3>
+    <div>
+      <h1 style={headingStyle}>Office Space Rental App</h1>
+      <div style={containerStyle}>
+        {offices.map((office, index) => (
+          <div key={index} style={cardStyle}>
+            <img src={office.image} alt={office.name} style={{ width: '100%', borderRadius: '8px' }} />
+            <h2>{office.name}</h2>
+            <p style={{ color: office.rent < 60000 ? 'red' : 'green', fontWeight: 'bold' }}>
+              Rent: ₹{office.rent}
+            </p>
+            <p>{office.address}</p>
           </div>
         ))}
       </div>
